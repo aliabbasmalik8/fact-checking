@@ -54,7 +54,7 @@ const FactChecking = () => {
   return (
     <main className="min-h-screen pt-12 w-[1000px] max-w-full px-4 mx-auto">
       <div>
-        <textarea onChange={(e) => setQuery(e.target.value)} className="w-full h-32 p-2 outline-none resize-none" />
+        <textarea onChange={(e) => setQuery(e.target.value)} className="text-black w-full h-32 p-2 outline-none resize-none" />
         <div className="flex justify-end">
           <button onClick={getResult} className="flex bg-slate-900 text-white p-2 justify-center w-32" disabled={loading}>
             {!loading && 'Get Result'}
