@@ -9,7 +9,7 @@ const FactChecking = () => {
 
   const handleAsk = async (question) => {
     try {
-      const response = await fetch("http://13.53.190.57/ask", {
+      const response = await fetch("http://13.53.190.57/wiki-links", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -20,7 +20,7 @@ const FactChecking = () => {
       if (response.ok) {
         const data = await response.json();
         console.log("Response:", data); // Add this line
-        setResult(data.answer);
+        setResult(data.output);
       } else {
         console.error("Error:", response.statusText);
       }
