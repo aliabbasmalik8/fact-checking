@@ -11,7 +11,7 @@ const FactChecking = () => {
   const handleAsk = async (question) => {
     setResponseTime(0)
     try {
-      const response = await fetch("http://13.53.190.57/wiki-links", {
+      const response = await fetch("https://13.53.190.57/wiki-links", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
