@@ -6,8 +6,10 @@ const FactChecking = () => {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
+  const [responseTime, setResponseTime] = useState(0)
 
   const handleAsk = async (question) => {
+    setResponseTime(0)
     try {
       const response = await fetch("http://13.53.190.57/wiki-links", {
         method: "POST",
@@ -21,6 +23,7 @@ const FactChecking = () => {
         const data = await response.json();
         console.log("Response:", data); // Add this line
         setResult(data.output);
+        setResponseTime(data.responseTime)
       } else {
         console.error("Error:", response.statusText);
       }
@@ -41,6 +44,9 @@ const FactChecking = () => {
 
   return (
     <main className="min-h-screen pt-12 w-[1000px] max-w-full px-4 mx-auto">
+      <div className="flex justify-center py-4">
+        <h1 className="text-[16px] font-bold">Wikipedia Fact Links Checker</h1>
+      </div>
       <div>
         <textarea
           onChange={(e) => setQuery(e.target.value)}
@@ -53,10 +59,11 @@ const FactChecking = () => {
             disabled={loading}
           >
             {!loading && "Get Result"}
-            {loading && <span class="animate-spin h-5 w-5 ml-3 bg-white" />}
+            {loading && <span className="animate-spin h-5 w-5 ml-3 bg-white" />}
           </button>
         </div>
       </div>
+      {responseTime !== 0 && <div className="mt-5">Response Time: {responseTime} s</div>}
       <div className="mt-8">{result}</div>
     </main>
   );

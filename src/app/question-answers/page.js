@@ -10,8 +10,10 @@ const FactChecking = () => {
   const [result, setResult] = useState("");
   const [urls, setUrls] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [responseTime, setResponseTime] = useState(0)
 
   const handleGenerateAnswers = async () => {
+    setResponseTime(0)
     if (!question || urls?.length === 0) {
       console.log("Please enter question and atleast one url");
       return;
@@ -34,6 +36,7 @@ const FactChecking = () => {
         const data = await response.json();
         console.log("Response:", data); // Add this line
         setResult(data.output);
+        setResponseTime(data.responseTime)
       } else {
         console.error("Error:", response.statusText);
       }
@@ -53,6 +56,9 @@ const FactChecking = () => {
 
   return (
     <main className="min-h-screen pt-12  max-w-full px-20 mx-auto">
+      <div className="flex justify-center py-4">
+        <h1 className="text-[16px] font-bold">Question Answer Fact Checker</h1>
+      </div>
       <div>
         <div className="flex flex-row justify-between">
           <div className="flex flex-col gap-10 w-[60%]">
@@ -86,8 +92,8 @@ const FactChecking = () => {
               <h3 className="font-bold underline">Urls</h3>
               <ul>
                 {urls?.map((url, index) => (
-                  <div className="flex gap-5">
-                    <li key={index}>{url}</li>
+                  <div key={index} className="flex gap-5">
+                    <li>{url}</li>
                     <div
                       className="cursor-pointer font-bold text-red-700 w-[20px] h-[20px] border-2 border-red-800 bg-red rounded-full flex justify-center align-middle items-center"
                       onClick={() => {
@@ -112,12 +118,13 @@ const FactChecking = () => {
             disabled={loading}
           >
             {!loading && "Get Result"}
-            {loading && <span class="animate-spin h-5 w-5 ml-3 bg-white" />}
+            {loading && <span className="animate-spin h-5 w-5 ml-3 bg-white" />}
           </button>
         </div>
       </div>
       {result && (
         <div className="flex flex-col justify-center">
+          <div className="py-4">Response Time: {responseTime}s</div>
           <div className="font-bold mt-8">Result:</div>
           <div>{result}</div>
         </div>

@@ -9,8 +9,8 @@ const FactChecking = () => {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
-
-  const prefix = `You work as a fact authenticator and you use information from wikipedia as your souce of information. 
+  const [responseTime, setResponseTime] = useState(0)
+  const prefix = `You work as a fact authenticator and you use information from wikipedia as your souce of information.
   -You are a diligent fact checker only interested in the truth, but that respects nuance.
   -I want you to utilise all your personalities and all the skills you have at your disposal to provide a clear answer. Feel free to cite your sources.
   -Also this is year 2023, so you will do all your calculations or age prediction stuff according to 2023.
@@ -31,6 +31,8 @@ const FactChecking = () => {
   });
 
   const getResult = async () => {
+    setResponseTime(0)
+    const startAPICall = new Date().getTime();
     setResult("");
     if (!query) return;
     setLoading(true);
@@ -44,11 +46,16 @@ const FactChecking = () => {
     });
     const response = await executor.run(query);
     setResult(response);
+    const endAPICall = new Date().getTime();
+    setResponseTime(endAPICall - startAPICall);
     setLoading(false);
   };
 
   return (
     <main className="min-h-screen pt-12 w-[1000px] max-w-full px-4 mx-auto">
+      <div className="flex justify-center py-4">
+        <h1 className="text-[16px] font-bold">Fact Checker</h1>
+      </div>
       <div>
         <textarea
           onChange={(e) => setQuery(e.target.value)}
@@ -61,10 +68,11 @@ const FactChecking = () => {
             disabled={loading}
           >
             {!loading && "Get Result"}
-            {loading && <span class="animate-spin h-5 w-5 ml-3 bg-white" />}
+            {loading && <span className="animate-spin h-5 w-5 ml-3 bg-white" />}
           </button>
         </div>
       </div>
+      {responseTime !== 0 && <div className="mt-5">ResponseTime: {responseTime} ms</div>}
       <div className="mt-8">{result}</div>
     </main>
   );
