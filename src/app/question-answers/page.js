@@ -10,10 +10,10 @@ const FactChecking = () => {
   const [result, setResult] = useState("");
   const [urls, setUrls] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [responseTime, setResponseTime] = useState(0)
+  const [responseTime, setResponseTime] = useState(0);
 
   const handleGenerateAnswers = async () => {
-    setResponseTime(0)
+    setResponseTime(0);
     if (!question || urls?.length === 0) {
       console.log("Please enter question and atleast one url");
       return;
@@ -24,7 +24,7 @@ const FactChecking = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("https://13.53.190.57/generate-answer", {
+      const response = await fetch("http://13.53.190.57/generate-answer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const FactChecking = () => {
         const data = await response.json();
         console.log("Response:", data); // Add this line
         setResult(data.output);
-        setResponseTime(data.responseTime)
+        setResponseTime(data.responseTime);
       } else {
         console.error("Error:", response.statusText);
       }

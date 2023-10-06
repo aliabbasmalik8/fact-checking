@@ -6,12 +6,12 @@ const FactChecking = () => {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
-  const [responseTime, setResponseTime] = useState(0)
+  const [responseTime, setResponseTime] = useState(0);
 
   const handleAsk = async (question) => {
-    setResponseTime(0)
+    setResponseTime(0);
     try {
-      const response = await fetch("https://13.53.190.57/wiki-links", {
+      const response = await fetch("http://13.53.190.57/wiki-links", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const FactChecking = () => {
         const data = await response.json();
         console.log("Response:", data); // Add this line
         setResult(data.output);
-        setResponseTime(data.responseTime)
+        setResponseTime(data.responseTime);
       } else {
         console.error("Error:", response.statusText);
       }
@@ -63,7 +63,9 @@ const FactChecking = () => {
           </button>
         </div>
       </div>
-      {responseTime !== 0 && <div className="mt-5">Response Time: {responseTime} s</div>}
+      {responseTime !== 0 && (
+        <div className="mt-5">Response Time: {responseTime} s</div>
+      )}
       <div className="mt-8">{result}</div>
     </main>
   );
