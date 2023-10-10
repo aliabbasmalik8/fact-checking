@@ -117,7 +117,7 @@ export default function Home() {
             </span>
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Uses the Google Search API in pytho to search the provided question on Google and then scrapes the data from the first link using Beautiful Soup. The scraped data is then given to OpenAI which answers the question accordingly.
+            Uses the Google Search API in python to search the provided question on Google and then scrapes the data from the first link using Beautiful Soup. The scraped data is then given to OpenAI which answers the question accordingly.
           </p>
         </Link>
         <Link
@@ -134,6 +134,22 @@ export default function Home() {
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
             Uses the Serp API in pytho to get the links from the Google Search Engine and then scrapes the data from the first link using Beautiful Soup. The data scraped is provided to OpenAI for analyzing and training which then answers the question and save it to memory for future retrieval.
+          </p>
+        </Link>
+        <Link
+          href="/google-search-fact-checking"
+          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2 className={`mb-3 text-2xl font-semibold`}>
+            Google Search Fact Checker{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+              -&gt;
+            </span>
+          </h2>
+          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
+            Uses the Google Search API in python to search the provided question appended with +wikepedia on Google and then scrapes the data from the first/wikepedia link using Selenium URL Document Loader of LangChain. The scraped data is then given to OpenAI which answers the question accordingly.
           </p>
         </Link>
       </div>
