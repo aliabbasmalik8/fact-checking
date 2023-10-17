@@ -19,9 +19,6 @@ const FactChecking = () => {
       return;
     }
 
-    console.log("question===>", question);
-    console.log("url===>", urls);
-
     try {
       setLoading(true);
       const response = await fetch("http://13.53.190.57/generate-answer", {
