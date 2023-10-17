@@ -93,7 +93,7 @@ const FactChecking = () => {
               <ul>
                 {urls?.map((url, index) => (
                   <div key={index} className="flex gap-5">
-                    <li>{url}</li>
+                    <li className="text-black">{url}</li>
                     <div
                       className="cursor-pointer font-bold text-red-700 w-[20px] h-[20px] border-2 border-red-800 bg-red rounded-full flex justify-center align-middle items-center"
                       onClick={() => {
