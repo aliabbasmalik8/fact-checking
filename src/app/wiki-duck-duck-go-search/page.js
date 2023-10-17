@@ -12,7 +12,7 @@ const FactChecking = () => {
     setResponseTime(0);
     try {
       const response = await fetch(
-        "http://localhost:8000/new_fact_check/message",
+        "http://13.53.190.57/new_fact_check/message",
         {
           method: "POST",
           headers: {
