@@ -10,14 +10,15 @@ const FactChecking = () => {
 
   const handleAsk = async (question) => {
     setResponseTime(0);
+    const num = 3
     const startAPICall = new Date().getTime();
     try {
-      const response = await fetch("http://13.53.190.57/fact_check_google/google_search", {
+      const response = await fetch("http://13.53.190.57/test/fact_check", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question, num }),
       });
 
       if (response.ok) {

@@ -12,12 +12,13 @@ const FactChecking = () => {
     setResponseTime(0);
     const startAPICall = new Date().getTime();
     try {
+      const num = 3
       const response = await fetch("http://13.53.190.57/fact_check_google/fact_check", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ question, num }),
       });
 
       if (response.ok) {
