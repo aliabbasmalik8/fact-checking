@@ -26,7 +26,7 @@ const FactChecking = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question, urls }),
+        body: JSON.stringify({ question, urls, innerText: null }),
       });
 
       if (response.ok) {
