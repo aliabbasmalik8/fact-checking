@@ -10,7 +10,7 @@ const FactChecking = () => {
 
   const handleAsk = async (question) => {
     setResponseTime(0);
-    const num = 3;
+    const num = "3";
     const startAPICall = new Date().getTime();
     try {
       const response = await fetch("http://16.171.113.25/verify-search", {
